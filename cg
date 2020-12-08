@@ -1,0 +1,22 @@
+#!/bin/bash
+
+RG=(
+    rg
+    --line-number
+    --color=always
+    "$@"
+)
+
+highlight='highlight -O ansi --syntax-by-name="$f" --force=C'
+
+FZF=(
+    fzf
+    --ansi
+    --reverse
+    --no-sort
+    --keep-right
+    --preview 'x={}; f="${x%%:*}"; l="${x#*:}"; l="${l%%:*}"; echo "$f"; python indent-context.py "$f" "$l" --c 13 |'"$highlight"
+    --preview-window :80
+)
+
+"${RG[@]}" | "${FZF[@]}"
