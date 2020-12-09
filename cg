@@ -7,7 +7,7 @@ RG=(
     "$@"
 )
 
-highlight='highlight -O ansi --syntax-by-name="$f" --force=C'
+highlight='highlight -O ansi --syntax-by-name="$f" --force=c'
 
 FZF=(
     fzf
